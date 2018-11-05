@@ -1,15 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { Component, Suspense, lazy } from 'react'
 
-export default () => {
-  const [count, setCount] = useState(0)
+const CounterLazy = lazy(() => import('./Counter'))
 
-  useEffect(() => {
-    console.info('re rendered')
-  })
-
-  console.log(count, setCount)
-  return <div>
-    <p>{count}</p>
-    <button onClick={() => setCount(count + 1)}>Incrment</button>
-  </div>
-};
+export default class App extends Component {
+  render() {
+    return <div>
+      <h1>Counter</h1>
+      <Suspense fallback={<p>Loading Counter...</p>}>
+        <CounterLazy />
+      </Suspense>
+    </div>
+  }
+}
