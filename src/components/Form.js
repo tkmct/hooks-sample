@@ -1,5 +1,5 @@
 import React, { useState, useCallback, useContext } from 'react'
-import { NetworkContext } from './contexts/NetworkContext'
+import { NetworkContext } from '../contexts/NetworkContext'
 
 const POST_STATE = {
   INITIAL: 'INITIAL',

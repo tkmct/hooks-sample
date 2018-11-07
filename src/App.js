@@ -1,8 +1,9 @@
 import React, { Component, Suspense, lazy } from 'react'
 import { NetworkProvider } from './contexts/NetworkContext'
 
-const CounterLazy = lazy(() => import('./Counter'))
-const FormLazy = lazy(() => import('./Form'))
+const CounterLazy = lazy(() => import('./components/Counter'))
+const FormLazy = lazy(() => import('./components/Form'))
+const NetworkStatusBarLazy = lazy(() => import('./components/NetworkStatusBar'))
 
 export default class App extends Component {
   render() {
@@ -13,6 +14,9 @@ export default class App extends Component {
       </Suspense>
       <Suspense fallback={<p>Loading Counter...</p>}>
         <FormLazy />
+      </Suspense>
+      <Suspense fallback={""}>
+        <NetworkStatusBarLazy />
       </Suspense>
     </NetworkProvider>
   }
