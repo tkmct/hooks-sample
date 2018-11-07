@@ -22,5 +22,5 @@ export default function useOnline() {
      }
   })
 
-  return [online]
+  return online
 }

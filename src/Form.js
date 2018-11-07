@@ -1,5 +1,5 @@
-import React, { useState, useCallback } from 'react'
-import useOnline from './useOnline'
+import React, { useState, useCallback, useContext } from 'react'
+import { NetworkContext } from './contexts/NetworkContext'
 
 const POST_STATE = {
   INITIAL: 'INITIAL',
@@ -11,7 +11,7 @@ const POST_STATE = {
 const Form = () => {
   const [name, setName] = useState('')
   const [postState, setPostState] = useState(POST_STATE.INITIAL)
-  const [online] = useOnline()
+  const network = useContext(NetworkContext)
 
   const onSubmit = useCallback((e) => {
     e.preventDefault()
@@ -27,7 +27,7 @@ const Form = () => {
   return <div>
     <form onSubmit={onSubmit}>
       <input type="text" value={name} onChange={e => setName(e.target.value)} />
-      <button type="submit" disabled={!online}>Submit</button>
+      <button type="submit" disabled={!network.online}>Submit</button>
     </form>
     {postState === POST_STATE.POSTING  && <p>Posting form ...</p>}
   </div>
